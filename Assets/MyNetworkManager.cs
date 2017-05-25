@@ -16,12 +16,18 @@ public class MyNetworkManager : NetworkManager {
 
 	public override void OnStartClient (NetworkClient myClient) {
 		Debug.Log (Time.timeSinceLevelLoad + ": Client start requested");
+		InvokeRepeating ("printDot",0,1);
 		
 	}
 
 	public override void OnClientConnect (NetworkConnection conn) {
 		Debug.Log (Time.timeSinceLevelLoad + ": Client connected to IP: " + conn.address);
+		CancelInvoke();
 		
+	}
+
+	void printDot () {
+		Debug.Log (".");
 	}
 
 }
